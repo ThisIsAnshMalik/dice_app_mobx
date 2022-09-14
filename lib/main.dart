@@ -1,4 +1,6 @@
+import 'package:dice_app_mobx/dice_counter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +29,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final diceCounter = DiceCounter();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,23 +51,34 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                     child: TextButton(
-                  onPressed: (() {}),
-                  child: Image.asset("assets/Dice1.png"),
-                )),
+                        onPressed: (() => diceCounter.roll()),
+                        child: Observer(
+                          builder: ((context) {
+                            return Image.asset(
+                                'assets/Dice${diceCounter.left}.png');
+                          }),
+                        ))),
                 Expanded(
                     child: TextButton(
-                  onPressed: (() {}),
-                  child: Image.asset("assets/Dice1.png"),
-                ))
+                        onPressed: () => diceCounter.roll(),
+                        child: Observer(
+                          builder: ((context) {
+                            return Image.asset(
+                                ('assets/Dice${diceCounter.right}.png'));
+                          }),
+                        )))
               ],
             ),
             const SizedBox(
               height: 40,
             ),
-            const Text(
-              "2",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            )
+            Observer(builder: ((context) {
+              return Text(
+                "Total ${diceCounter.total}",
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              );
+            }))
           ],
         ),
       ),

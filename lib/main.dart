@@ -43,7 +43,29 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[],
+          children: <Widget>[
+            Row(
+              children: [
+                Expanded(
+                    child: TextButton(
+                  onPressed: (() {}),
+                  child: Image.asset("assets/Dice1.png"),
+                )),
+                Expanded(
+                    child: TextButton(
+                  onPressed: (() {}),
+                  child: Image.asset("assets/Dice1.png"),
+                ))
+              ],
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            const Text(
+              "2",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            )
+          ],
         ),
       ),
     );

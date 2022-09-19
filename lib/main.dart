@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                     child: TextButton(
+                        key: const Key("dice_button"),
                         onPressed: (() => diceCounter.roll()),
                         child: Observer(
                           builder: ((context) {
